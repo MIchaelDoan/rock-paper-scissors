@@ -22,10 +22,13 @@ let playerCounter = 0;
 let computerCounter = 0;
 function playRound(playerSelection, computerSelection){
     
+    if(playerCounter == 5){
+        return "YOU WIN! YOU BEAT THE COMPUTER";
+    }
+    else if(computerCounter == 5){
+        return "YOU LOSE! THE COMPUTER WON";
+    }
 
-    if(playerSelection !== "ROCK" && playerSelection !== "PAPER" && playerSelection !=="SCISSORS"){
-        alert("Please enter in ROCK, PAPER or SCISSORS");
-    } 
     if(computerSelection == playerSelection){
 
         return "tie";
@@ -72,6 +75,19 @@ buttons.forEach((button) => {
 }); */
 
 const buttons = document.querySelectorAll('button');
+const results = document.querySelector('#results');
+const round = document.createElement('p');
+const score = document.querySelector('#score');
+const playerScore = document.createElement('p');
+const computerScore = document.createElement('p2');
+
+function tallyScore(){
+            playerScore.textContent = playerCounter;
+            computerScore.textContent = computerCounter;
+            score.appendChild(playerScore);
+            score.appendChild(computerScore);
+            results.appendChild(round);
+}
 
 // we use the .forEach method to iterate through each button
 buttons.forEach((button) => {
@@ -80,16 +96,26 @@ buttons.forEach((button) => {
   button.addEventListener('click', () => {
     switch(button.id){
         case "rock":
-            console.log(playRound("ROCK",getComputerChoice()));
-            alert("Rock");
+            round.textContent = playRound(playerSelection(button.id),getComputerChoice());
+            tallyScore();
+            results.appendChild(round);
+            
             break;
         case "paper":
-            //playRound("PAPER",getComputerChoice());
+            round.textContent = playRound(playerSelection(button.id),getComputerChoice());
+            tallyScore();
+            results.appendChild(round);
+            
             break;
         case "scissors":
-            //playRound("SCISSORS",getComputerChoice());
+            round.textContent = playRound(playerSelection(button.id),getComputerChoice());
+            tallyScore();
+            results.appendChild(round);
+            
             break;
     }
     
   });
 });
+
+
