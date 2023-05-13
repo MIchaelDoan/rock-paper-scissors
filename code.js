@@ -80,7 +80,7 @@ buttons.forEach((button) => {
   button.addEventListener('click', () => {
     switch(button.id){
         case "rock":
-            //playRound("ROCK",getComputerChoice());
+            console.log(playRound("ROCK",getComputerChoice()));
             alert("Rock");
             break;
         case "paper":
